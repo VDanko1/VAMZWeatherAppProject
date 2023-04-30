@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:alpha="1"
     android:background="@drawable/weather_background">
 
 
@@ -12,35 +12,35 @@
         android:id="@+id/NowTextSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="132dp"
         android:text="@string/now"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/StaticDays5Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="112dp"
+        android:layout_marginEnd="128dp"
         android:text="@string/_5_days"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/StaticFeelsLikeTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="112dp"
         android:text="Feels like"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="@+id/LowestTemperature"
         app:layout_constraintTop_toBottomOf="@+id/LowestTemperature" />
 
@@ -70,17 +70,19 @@
         android:id="@+id/TemperatureNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="1"
         android:capitalize="characters"
-        android:text="TempNow"
+        android:text="TempNow;"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintVertical_bias="0.405" />
 
     <TextView
         android:id="@+id/LowestTemperature"
@@ -95,7 +97,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.404" />
 
     <TextView
         android:id="@+id/HighestTemperature"
@@ -110,7 +112,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/TemperatureNow"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.404" />
 
     <TextView
         android:id="@+id/StaticWindSpeedText"
@@ -138,11 +140,11 @@
         android:id="@+id/FeelsLikeTemperatureVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="112dp"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/HighestTemperature"
-        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HighestTemperature" />
 
@@ -216,5 +218,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.193"
         tools:checked="false" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
