@@ -3,222 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:alpha="1"
-    android:background="@drawable/weather_background">
+    android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/NowTextSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:text="@string/now"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
 
-    <TextView
-        android:id="@+id/StaticDays5Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
-        android:text="@string/_5_days"
-        android:textColor="#FFFFFF"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="407dp"
+        android:layout_height="728dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
-
-    <TextView
-        android:id="@+id/StaticFeelsLikeTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Feels like"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toStartOf="@+id/LowestTemperature"
-        app:layout_constraintTop_toBottomOf="@+id/LowestTemperature" />
-
-    <TextView
-        android:id="@+id/StaticUVIndexText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="UV Index"
-        android:textStyle="normal|bold"
-        app:layout_constraintEnd_toEndOf="@+id/StaticFeelsLikeTemperature"
-        app:layout_constraintStart_toStartOf="@+id/StaticFeelsLikeTemperature"
-        app:layout_constraintTop_toBottomOf="@+id/StaticFeelsLikeTemperature" />
-
-    <TextView
-        android:id="@+id/StaticHumidityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Humidity (%)"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/StaticUVIndexText"
-        app:layout_constraintStart_toStartOf="@+id/StaticUVIndexText"
-        app:layout_constraintTop_toBottomOf="@+id/StaticUVIndexText" />
-
-    <TextView
-        android:id="@+id/TemperatureNow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="1"
-        android:capitalize="characters"
-        android:text="TempNow;"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
-
-    <TextView
-        android:id="@+id/LowestTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:text="@string/textview"
-        android:textColor="#0000CD"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TemperatureNow"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
-
-    <TextView
-        android:id="@+id/HighestTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:text="TextView"
-        android:textColor="#FF0000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/TemperatureNow"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
-
-    <TextView
-        android:id="@+id/StaticWindSpeedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Wind speed"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/StaticHumidityText"
-        app:layout_constraintStart_toStartOf="@+id/StaticHumidityText"
-        app:layout_constraintTop_toBottomOf="@+id/StaticHumidityText" />
-
-    <TextView
-        android:id="@+id/StaticPressureText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Pressure"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/StaticWindSpeedText"
-        app:layout_constraintStart_toStartOf="@+id/StaticWindSpeedText"
-        app:layout_constraintTop_toBottomOf="@+id/StaticWindSpeedText" />
-
-    <TextView
-        android:id="@+id/FeelsLikeTemperatureVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/HighestTemperature"
-        app:layout_constraintHorizontal_bias="0.806"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HighestTemperature" />
-
-    <TextView
-        android:id="@+id/UVIndexVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/FeelsLikeTemperatureVal"
-        app:layout_constraintStart_toStartOf="@+id/FeelsLikeTemperatureVal"
-        app:layout_constraintTop_toBottomOf="@+id/FeelsLikeTemperatureVal" />
-
-    <TextView
-        android:id="@+id/HumidityVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/UVIndexVal"
-        app:layout_constraintStart_toStartOf="@+id/UVIndexVal"
-        app:layout_constraintTop_toBottomOf="@+id/UVIndexVal" />
-
-    <TextView
-        android:id="@+id/WindSpeedVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/HumidityVal"
-        app:layout_constraintStart_toStartOf="@+id/HumidityVal"
-        app:layout_constraintTop_toBottomOf="@+id/HumidityVal" />
-
-    <TextView
-        android:id="@+id/PressureVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/WindSpeedVal"
-        app:layout_constraintStart_toStartOf="@+id/WindSpeedVal"
-        app:layout_constraintTop_toBottomOf="@+id/WindSpeedVal" />
-
-    <ImageButton
-        android:id="@+id/SearchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#34FFFFFF"
-        android:contentDescription="For changing location"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
-
-    <Switch
-        android:id="@+id/SwitchDays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
-        tools:checked="false" />
-
+        app:layout_constraintVertical_bias="0.973"
+        app:navGraph="@navigation/my_nav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
