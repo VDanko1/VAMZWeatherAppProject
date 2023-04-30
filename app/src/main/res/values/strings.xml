@@ -2,4 +2,7 @@
     <string name="app_name">SemestrálnaPrácaFinal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
+    <string name="_5_days">5 Days</string>
+    <string name="now">Now</string>
 </resources>
