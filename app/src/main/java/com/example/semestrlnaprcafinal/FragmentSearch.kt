@@ -47,6 +47,7 @@ class FragmentSearch : Fragment() {
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, capCities)
         autoComplete.setAdapter(adapter)
+
     }
 
     companion object {

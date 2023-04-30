@@ -11,24 +11,32 @@
         android:id="@+id/autoCompleteTextView"
         android:layout_width="247dp"
         android:layout_height="65dp"
-        android:completionHint="Type city for weather data"
+        android:hint="Place name"
         android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#0277BD"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.123" />
 
-    <TextView
-        android:id="@+id/textViewPopod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="137dp"
+        android:layout_height="62dp"
+        android:alpha="0.9"
+        android:text="Search"
+        android:textColor="#FFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
         app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.322" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

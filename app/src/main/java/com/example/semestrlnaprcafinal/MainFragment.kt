@@ -1,5 +1,6 @@
 package com.example.semestrlnaprcafinal
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val searchButton: ImageButton = view.findViewById(R.id.SearchButton)
@@ -48,6 +50,10 @@ class MainFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_fragmentSearch)
         }
 
+        val switchFor5Days: Switch = view.findViewById(R.id.SwitchDays)
+        switchFor5Days.setOnClickListener() {
+            Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_daysFragment)
+        }
 
 
     }
