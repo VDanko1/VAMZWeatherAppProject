@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_daysFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_daysFragment_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSearch"

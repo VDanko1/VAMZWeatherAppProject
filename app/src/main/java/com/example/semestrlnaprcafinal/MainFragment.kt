@@ -46,11 +46,13 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val searchButton: ImageButton = view.findViewById(R.id.SearchButton)
+
         searchButton.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_fragmentSearch)
         }
 
-        val switchFor5Days: Switch = view.findViewById(R.id.SwitchDays)
+        val switchFor5Days: Switch = view.findViewById(R.id.DaysSwitch5)
+
         switchFor5Days.setOnClickListener() {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_daysFragment)
         }

@@ -1,10 +1,12 @@
 package com.example.semestrlnaprcafinal
 
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Switch
 import androidx.navigation.Navigation
 
@@ -43,10 +45,16 @@ class DaysFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val switchToOneDay : Switch = view.findViewById(R.id.SwitchForOneDay)
-        switchToOneDay.setOnClickListener() {
+        val oneDaySwitch : Switch = view.findViewById(R.id.SwitchDayOne)
+        oneDaySwitch.setOnClickListener() {
             Navigation.findNavController(view).navigate(R.id.action_daysFragment_to_mainFragment)
         }
+
+        val searchButton : ImageButton = view.findViewById(R.id.SearchButton5DaysFragment)
+        searchButton.setOnClickListener() {
+            Navigation.findNavController(view).navigate(R.id.action_daysFragment_to_fragmentSearch)
+        }
+
     }
 
     companion object {
