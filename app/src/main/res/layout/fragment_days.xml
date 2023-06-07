@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:contentDescription="@string/_5_days"
-    android:fillViewport="true"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/weather_background"
-        tools:context=".DaysFragment"
-        tools:ignore="UseSwitchCompatOrMaterialXml">
+    android:layout_height="match_parent"
+    android:background="@drawable/weather_background"
+    tools:context=".MainFragment">
 
 
         <Switch
@@ -306,4 +297,4 @@
 
 
 
-</ScrollView>
+

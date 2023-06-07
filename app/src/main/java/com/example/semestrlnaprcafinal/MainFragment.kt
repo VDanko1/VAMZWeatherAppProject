@@ -2,31 +2,43 @@ package com.example.semestrlnaprcafinal
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Switch
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.semestrlnaprcafinal.WeatherData.Example
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 class MainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    lateinit var minTemperatureTextView: TextView
+    lateinit var maxTemperatureTextView: TextView
+    lateinit var currentTemperatureTextView: TextView
+    lateinit var feelsLikeTemperatureTextView: TextView
+    lateinit var HumidityTextView: TextView
+    lateinit var UvIndexTextView: TextView
+    lateinit var windSpeedTextView: TextView
+    lateinit var pressureTextView: TextView
+    lateinit var cityTextView: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,46 +50,74 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val searchButton: ImageButton = view.findViewById(R.id.SearchButton)
+        loadData("Zilina")
 
+        val nameOfCityToFindWeatherFor : EditText = view.findViewById(R.id.cityToFind)
+        val searchButton: ImageButton = view.findViewById(R.id.SearchButton)
         searchButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_fragmentSearch)
+            val pCityName = nameOfCityToFindWeatherFor.text.toString()
+            loadData(pCityName)
         }
 
         val switchFor5Days: Switch = view.findViewById(R.id.DaysSwitch5)
-
         switchFor5Days.setOnClickListener() {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_daysFragment)
         }
 
+        minTemperatureTextView = view.findViewById(R.id.LowestTemperature)
+        maxTemperatureTextView = view.findViewById(R.id.HighestTemperature)
+        currentTemperatureTextView = view.findViewById(R.id.TemperatureNow)
+        feelsLikeTemperatureTextView = view.findViewById(R.id.FeelsLikeTemperatureVal)
+        HumidityTextView = view.findViewById(R.id.HumidityVal)
+        windSpeedTextView = view.findViewById(R.id.WindSpeedVal)
+        pressureTextView = view.findViewById(R.id.PressureVal)
+        UvIndexTextView = view.findViewById(R.id.UVIndexVal)
+        cityTextView = view.findViewById(R.id.cityName)
 
     }
 
+    private fun loadData(cityName: String) {
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+            .create(ApiInterface::class.java)
 
+        val response = retrofit.getData(cityName, "a4d960a92f7bc545787cbffcbdffc312", "metric")
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                MainFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
+        response.enqueue(object : Callback<Example> {
+            override fun onResponse(call: Call<Example>,response: Response<Example>) {
+
+                val responseBody = response.body()
+
+                if (responseBody != null) {
+                    minTemperatureTextView.text = responseBody.list.get(0).main.temp_min.toString()+ " °C"
+                    maxTemperatureTextView.text = responseBody.list.get(0).main.temp_max.toString() + " °C"
+                    currentTemperatureTextView.text = responseBody.list.get(0).main.temp.toString()+ " °C"
+                    HumidityTextView.text = responseBody.list.get(0).main.humidity.toString()
+                    feelsLikeTemperatureTextView.text = responseBody.list.get(0).main.feels_like.toString()
+                    UvIndexTextView.text = "1"
+                    windSpeedTextView.text = responseBody.list.get(0).wind.speed.toString()
+                    pressureTextView.text = responseBody.list.get(0).main.pressure.toString()
+                    cityTextView.text = responseBody.city.name
                 }
+            }
+
+            override fun onFailure(call: Call<Example>, t: Throwable) {
+                Log.d("DATA",t.toString())
+            }
+
+        })
+
     }
+
+
+
+
 }
