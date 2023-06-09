@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/weather_background"
-    tools:context=".FragmentSearch">
+    android:background="@drawable/weather_background_finfinal"
+    tools:context=".view.FragmentSearch">
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"

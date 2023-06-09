@@ -1,6 +1,5 @@
-package com.example.semestrlnaprcafinal
+package com.example.semestrlnaprcafinal.model
 
-import com.example.semestrlnaprcafinal.data.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

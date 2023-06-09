@@ -1,4 +1,4 @@
-package com.example.semestrlnaprcafinal
+package com.example.semestrlnaprcafinal.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,10 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-
+import com.example.semestrlnaprcafinal.R
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 class FragmentSearch : Fragment() {
 
     private var param1: String? = null
@@ -40,7 +39,6 @@ class FragmentSearch : Fragment() {
         val autoComplete: AutoCompleteTextView = view.findViewById(R.id.autoCompleteTextView)
         val searchBut: Button = view.findViewById(R.id.SearchCityButton)
         val textFromAutoComplete = autoComplete.getText()
-        val textToString = textFromAutoComplete.toString();
         val adapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, capCities)
         autoComplete.setAdapter(adapter)

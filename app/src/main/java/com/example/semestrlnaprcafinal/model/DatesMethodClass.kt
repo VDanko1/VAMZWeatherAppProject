@@ -1,4 +1,4 @@
-package com.example.semestrlnaprcafinal.data
+package com.example.semestrlnaprcafinal.model
 
 import java.text.SimpleDateFormat
 import java.util.Calendar

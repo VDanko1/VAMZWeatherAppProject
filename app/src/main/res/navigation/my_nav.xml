@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.semestrlnaprcafinal.MainFragment"
+        android:name="com.example.semestrlnaprcafinal.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/daysFragment"
-        android:name="com.example.semestrlnaprcafinal.DaysFragment"
+        android:name="com.example.semestrlnaprcafinal.view.FragmentDays"
         android:label="fragment_days"
         tools:layout="@layout/fragment_days" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentSearch"
-        android:name="com.example.semestrlnaprcafinal.FragmentSearch"
+        android:name="com.example.semestrlnaprcafinal.view.FragmentSearch"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
