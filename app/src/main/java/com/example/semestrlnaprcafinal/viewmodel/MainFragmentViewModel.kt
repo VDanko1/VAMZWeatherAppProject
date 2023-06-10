@@ -11,6 +11,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+/**
+ * ViewModel v ktorom uchovávam LiveData
+ * pre moj main fragment,
+ * používam MutableLiveData pretože sa časom
+ * menia. Je to ako keby "mostík" medzi modelom a views.
+ *
+ * @constructor vytvorí prázdne "kontajnery" live dat.
+ */
 class MainFragmentViewModel : ViewModel() {
 
     val lowestTemperature: MutableLiveData<Double> by lazy {
@@ -45,10 +54,30 @@ class MainFragmentViewModel : ViewModel() {
         MutableLiveData<String>()
     }
 
+    /**
+     * Metóda load data mi načítava
+     * dáta z api klúča a uchováva mi ich
+     * vo vyššie uvedených kontajneroch.
+     *
+     * @param cityName názov mesta, z ktorého chceme obdržať dáta o počasií
+     *
+     */
+
 
     fun loadData(cityName: String) {
+        // získanie inštancie retrofitu, dát a vytvorenie
         val retrofit = RetrofitClass().getRetrofit()
         val response = retrofit.getData(cityName, ApiKey, Units)
+
+        /**
+         * Pokial získam odpoveď,
+         * jednotlivé dáta sa mi načítajú do mojich vyššie
+         * uvedených kontajnerov.
+         *
+         * @param call posle request do api v požadovanom tvare
+         * @param response získanie odpovede v danom tvare
+         *
+         */
 
         response.enqueue(object : Callback<Example> {
             override fun onResponse(call: Call<Example>, response: Response<Example>) {
@@ -56,6 +85,8 @@ class MainFragmentViewModel : ViewModel() {
                 val responseBody = response.body()
 
                 if (responseBody != null) {
+
+                    //nastavovanie hodnôt, ktoré získam z api
                     lowestTemperature.value = responseBody.list.get(0).main.temp_min
                     highestTemperature.value = responseBody.list.get(0).main.temp_max
                     temperatureNow.value = responseBody.list.get(0).main.temp
@@ -67,6 +98,13 @@ class MainFragmentViewModel : ViewModel() {
                     descriptionWeather.value = "     " + responseBody.list.get(0).weather.get(0).description
                 }
             }
+
+            /**
+             * Pokial nedostanem response, zavola sa táto metoda
+             * a error sa zapíše do logu
+             *  @param call posle request do api v požadovanom tvare
+             *  @throws t exception
+             */
             override fun onFailure(call: Call<Example>, t: Throwable) {
                 Log.d("DATA",t.toString())
             }

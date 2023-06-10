@@ -12,6 +12,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * ViewModel v ktorom uchovávam LiveData
+ * pre moj fragment Days,
+ * používam MutableLiveData pretože sa časom
+ * menia. Je to ako keby "mostík" medzi modelom a views.
+ *
+ * @constructor vytvorí prázdne "kontajnery" live dat.
+  */
 class FragmentDaysViewModel : ViewModel() {
     val dayAfTomorrowDate: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
@@ -87,25 +95,47 @@ class FragmentDaysViewModel : ViewModel() {
     }
 
 
+
+    /**
+     * Metóda load data mi načítava
+     * dáta z api klúča a uchováva mi ich
+     * vo vyššie uvedených kontajneroch.
+     *
+     * @param cityName názov mesta, z ktorého chceme obdržať dáta o počasií
+     *
+     */
+
     fun loadData(cityName: String) {
+        // získanie inštancie retrofitu, dát a vytvorenie inštancie ktorá
+        // mi vracia dátumy
         val retrofit = RetrofitClass().getRetrofit()
         val response = retrofit.getData(cityName, ApiKey, Units)
         val getDatesClass = DatesMethodClass()
 
-        var indexOfTTomorrowApi = 0
 
+        var indexOfTTomorrowApi = 0
+        /**
+         * Pokial získam odpoveď,
+         * jednotlivé dáta sa mi načítajú do mojich vyššie
+         * uvedených kontajnerov.
+         *
+         * @param call posle request do api v požadovanom tvare
+         * @param response získanie odpovede v danom tvare
+         *
+         */
         response.enqueue(object : Callback<Example> {
             override fun onResponse(call: Call<Example>, response: Response<Example>) {
                 val responseBody = response.body()
                 if (responseBody != null) {
-                    for(i in 1..10) {
+                    for(i in 1..10) { //Json mi vráti arraylist dát, toto mi vráti index v ktorom sa nachadzaju data na zajtrajši den
                         val tomorrowDateFromApi = responseBody.list[i].dt_txt.substring(0, 10)
                         if(tomorrowDateFromApi == getDatesClass.getTomorrowDate()) {
                             indexOfTTomorrowApi = i
-                            println(indexOfTTomorrowApi)
                             break
                         }
                     }
+
+                    //nastavovanie hodnôt, ktoré získam z api
 
                     tomorrowDate.value = getDatesClass.getTomorrowDate()
                     dayAfTomorrowDate.value = getDatesClass.getDayAfterTommorowDate()
@@ -132,6 +162,13 @@ class FragmentDaysViewModel : ViewModel() {
 
                 }
             }
+
+            /**
+             * Pokial nedostanem response, zavola sa táto metoda
+             * a error sa zapíše do logu
+             *  @param call posle request do api v požadovanom tvare
+             *  @throws t exception
+             */
             override fun onFailure(call: Call<Example>, t: Throwable) {
                 Log.d("DATA",t.toString())
             }

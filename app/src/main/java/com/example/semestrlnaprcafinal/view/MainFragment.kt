@@ -17,23 +17,27 @@ import com.example.semestrlnaprcafinal.databinding.FragmentMainBinding
 import com.example.semestrlnaprcafinal.model.DefaultCityName
 import com.example.semestrlnaprcafinal.viewmodel.MainFragmentViewModel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
+/**
+ * MainFragment mi zobrazuje
+ * aktuálne počasie v danom mieste
+ *
+ * Defaulte po zapnutí aplikácie sa zobrazí
+ * počasie pre Bratislavu.
+ */
 
 class MainFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var viewModel: MainFragmentViewModel
+
+    /**
+     *  Funkcia OnCreate
+     *  kde načítam dáta do svojho
+     *  viewModelu a následne ich získavam
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
 
         viewModel = ViewModelProvider(requireActivity()).get(MainFragmentViewModel::class.java)
 
@@ -42,13 +46,25 @@ class MainFragment : Fragment() {
         loadDataFromViewModel()
     }
 
+    /**
+     * V funkcii onCreateView
+     * si vytváram binding
+     * na vyhladávanie jednotlivých textviews,edittextov... apod
+     */
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    /**
+     * V funkcii onViewCreated si nastavujem
+     * navigáciu medzi mainFragmentom a framgnetomDays
+     *
+     * Ďalej pridávam actionlistener na moj button,
+     * pomocou ktorého vyhladávame počasie.
+     */
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,9 +74,8 @@ class MainFragment : Fragment() {
 
         val searchButton: ImageButton = binding.SearchButton
         searchButton.setOnClickListener {
-            val pCityName = nameOfCityToFindWeatherFor.text.toString()
-            DefaultCityName = pCityName
-            viewModel.loadData(pCityName)
+            DefaultCityName = nameOfCityToFindWeatherFor.text.toString() //prenastavi premennú na miesto ktore hladam
+            viewModel.loadData(nameOfCityToFindWeatherFor.text.toString()) //načíta dáta do viewModelu
         }
 
         val switchFor5Days: Switch = binding.DaysSwitch5
@@ -68,6 +83,17 @@ class MainFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_daysFragment)
         }
     }
+
+    /**
+     * Pri prechode medzi fragmentmi alebo vytvorení inštancie
+     * MainFragment sa mi načitajú dáta
+     * z mojho ViewModelu ktorý patri k tomuto fragmentu
+     *
+     * Observer mi automatiky načíta dáta
+     * pri zmene. To znamená že nemusím túto metódu
+     * opakovane volať ale automaticky po zmené dát vo ViewModeli
+     * sa mi dáta aktualizujú.
+     */
 
     private fun loadDataFromViewModel() {
         viewModel.lowestTemperature.observe(this, Observer {
