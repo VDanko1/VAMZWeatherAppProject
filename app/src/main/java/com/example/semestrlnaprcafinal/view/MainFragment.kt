@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -30,6 +31,7 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainFragmentViewModel
+    private val sharedViewModel: MainFragmentViewModel by activityViewModels()
 
     /**
      *  Funkcia OnCreate
@@ -40,6 +42,7 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity()).get(MainFragmentViewModel::class.java)
+
 
         viewModel.loadData(DefaultCityName)
 
@@ -96,7 +99,7 @@ class MainFragment : Fragment() {
      */
 
     private fun loadDataFromViewModel() {
-        viewModel.lowestTemperature.observe(this, Observer {
+        sharedViewModel.lowestTemperature.observe(this, Observer {
             binding.LowestTemperature.text = it.toString()
         })
 

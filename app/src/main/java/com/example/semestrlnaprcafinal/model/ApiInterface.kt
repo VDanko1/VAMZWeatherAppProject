@@ -24,7 +24,6 @@ import retrofit2.http.Query
  */
 
 interface ApiInterface {
-
     /*
        inšpirácia (nie prevzatie) - https://www.youtube.com/watch?v=RSYTn-O3r34&t=1161s&ab_channel=ResoCoder
      */

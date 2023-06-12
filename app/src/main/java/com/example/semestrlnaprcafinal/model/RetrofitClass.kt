@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RetrofitClass {
-
     /**
      * Slúži mi na získanie inštancie retrofitu
      * @return ApiInterface
